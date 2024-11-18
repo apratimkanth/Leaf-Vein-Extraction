@@ -1,0 +1,870 @@
+\documentclass{report}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{lipsum} % for dummy text
+\usepackage{graphicx}
+\usepackage{mathptmx} % Times New Roman text font
+\usepackage{newtxmath} % Times New Roman math font
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+\usepackage{amsmath} % for better formatting options
+\usepackage{enumitem} % for customizable list options
+\usepackage{setspace}
+\usepackage{ragged2e}
+
+
+\title{Report Final Semester}
+\author{Apratim Kanth}
+\date{June 2024}
+\begin{document}
+\begin{titlepage}
+    \centering
+    % \vspace*{1cm}
+
+    \textbf{Project Report on}
+
+    % \vspace{0.5cm}
+    \large\textbf{Leaf Vein Classification Of Mango and Jatropha based on LBP feature}
+
+    \vspace{0.2cm}
+    \textit{Project Proposal Submitted in Partial Fulfillment of the Requirement for the Award of}
+
+    \vspace{0.2cm}
+    \textbf{BACHELOR OF ENGINEERING\\
+    Computer Science and Engineering}
+
+    % \vspace{0.5cm}
+    \textbf{Submitted By}
+
+    % \vspace{0.5cm}
+    Kamal Singh (Roll no: 20201001)\\
+    Apratim Kanth (Roll no: 20201009)\\
+    Vipul Kumar (Roll no: 20201027)\\
+    Raushan Kumar (Roll no: 20201049)
+
+    \vspace{0.2cm}
+    \textbf{Under the Supervision of}
+
+    \vspace{0.5cm}
+    Mr. Sourav Samanta\\
+    Assistant Professor of\\
+    Computer Science \& Engineering Department
+
+    % \vspace{1cm}
+    \textbf{University Institute of Technology\\
+    The University of Burdwan}
+
+    % \vspace{1cm}
+    \includegraphics[width=0.3\textwidth]{images/BU logo.png} % Add your logo here
+
+    \vspace{1cm}
+    Golapbag, Burdwan, West Bengal, 713104\\
+    JULY 2024
+
+\end{titlepage}
+\begin{titlepage}
+    \centering
+    \textbf{\huge ACKNOWLEDGEMENT}
+    \vspace{1.5cm}
+
+    \onehalfspacing
+    \noindent
+    % \begin{flushleft}
+         \begin{justify}
+         We take this opportunity to place on record our deep sense of respect and Gratitude to \textbf{Mr. Sourav Samanta}, Assistant Professor, Department of Computer Science and Engineering, University Institute of Technology, The University of Burdwan for his valuable advice, resourceful guidance, active supervision and constant encouragement without which it would not have been possible to give this project proposal such a shape in time. We also want to express our gratitude towards \textbf{Dr. Souvik Bhattacharyya}, In-charge, Assistant Professor, Department of Computer Science and Engineering, University Institute of Technology, The University of Burdwan and all those who offered helping hands to complete this project directly or indirectly.
+
+    Lastly, we would also like to thank all our faculty members and our friends who maintained a congenial atmosphere during the tenure of this project.
+        \end{justify}
+
+    % \end{flushleft}
+   
+    \vspace{0.5cm}
+    Thanking you.
+
+    \vspace{1cm}
+
+    \begin{flushright}
+        Team Members: - \\
+        \vspace{0.5cm}
+        (Kamal Singh) \\
+        Reg no: - 202030000021 \\
+        \vspace{0.5cm}
+        (Apratim Kanth) \\
+        Reg no: - 202030000027 \\
+        \vspace{0.5cm}
+        (Vipul Kumar) \\
+        Reg no: - 202030000042 \\
+        \vspace{0.5cm}
+        (Raushan Kumar) \\
+        Reg no: - 202030000061
+    \end{flushright}
+\end{titlepage}
+% Certificate of Approval Page
+\begin{titlepage}
+    \centering
+    \includegraphics[width=0.2\textwidth]{images/BU logo.png}\\ % Replace 'logo.png' with the filename of your logo
+    \vspace{1cm}
+    
+    \textbf{University Institute of Technology}\\
+    \textbf{The University of Burdwan}
+
+    \vspace{1cm}
+    
+    \textbf{\huge CERTIFICATE OF APPROVAL}
+    
+    \vspace{0.5cm}
+    
+    \onehalfspacing
+    \noindent
+    \begin{justify} 
+    This is certified that the project proposal entitled “\textbf{Leaf Vein Classification Of Mango and Jatropha based on LBP feature}” which is submitted by \textbf{Kamal Singh, Apratim Kanth, Vipul Kumar, and Raushan Kumar} as partial fulfillment for the award of the degree of \textbf{Bachelor of Engineering, Computer Science and Engineering} at \textbf{University Institute of Technology, The University of Burdwan} is the record of the work of the student which have been carried out under my supervision.
+    \end{justify}
+    \vspace{1cm}
+    
+    \begin{flushleft}
+        Date: \\
+        Place: \textbf{BURDWAN}
+    \end{flushleft}
+    
+    \vspace{1.5cm}
+    
+    \begin{flushright}
+        \textbf{(Mr. Sourav Samanta)}\\
+        Project Mentor\\
+        Assistant Professor,\\
+        Department of Computer Science and Engineering,\\
+        University Institute of Technology,\\
+        The University of Burdwan
+    \end{flushright}
+    
+\end{titlepage}
+
+% Certificate of Approval Page for HOD sir
+\begin{titlepage}
+    \centering
+    \includegraphics[width=0.2\textwidth]{images/BU logo.png}\\ % Replace 'logo.png' with the filename of your logo
+    \vspace{1cm}
+    
+    \textbf{University Institute of Technology}\\
+    \textbf{The University of Burdwan}
+
+    \vspace{1cm}
+    
+    \textbf{\huge CERTIFICATE OF APPROVAL }
+    
+    \vspace{0.5cm}
+    
+    \onehalfspacing
+    \noindent
+    \begin{justify} 
+    This is certified that the project entitled “Leaf Vein Classification Of Mango and Jatropha based on LBP feature” which is being submitted by Kamal Singh (reg no – 202030000021 of 2020-24), Apratim Kanth  (reg no – 202030000027 of 2020-24), Vipul Kumar (reg no – 202030000042 of 2020-24) and Raushan Kumar (reg no – 202030000061 of 2020-24) towards partial fulfilment of the requirement for the award of degree in \textbf{Bachelor of Engineering (Computer Science and Engineering).}
+
+The project work has been prepared as per regulation of the University of Burdwan.
+
+    \end{justify}
+    \vspace{1cm}
+    
+    \begin{flushleft}
+        Date: \\
+        Place: \textbf{BURDWAN}
+    \end{flushleft}
+    
+    \vspace{0.5cm}
+
+\noindent
+\begin{minipage}[t]{0.45\textwidth}
+    \raggedright
+    \textbf{(Mr. Sourav Samanta)}\\  
+    Project Mentor\\
+    Assistant Professor,\\
+    Department of
+    Computer Science and Engineering,\\
+    University Institute of Technology,\\
+    The University of Burdwan
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+    \raggedleft
+  (\textbf{Dr. Souvik Bhattacharya} )\\  
+In-Charge,\\  
+Associate professor,\\  
+Department of Computer Science and Engineering\\  
+University Institute of Technology\\  
+The university of Burdwan 
+\end{minipage}
+
+    
+\end{titlepage}
+
+
+\tableofcontents % Table of contents
+{\onehalfspacing
+\chapter{Introduction}
+Leaf features play an important role in plant species identification and plant taxonomy. The type of the leaf vein is an important morphological feature of the leaf in botany.
+
+Leaf vein extraction is a process used to identify and isolate the vein structures within a leaf, which are crucial for various botanical, agricultural, and ecological studies. The vein pattern, also known as venation, plays a vital role in the transport of water, nutrients, and photosynthetic products, and it influences the mechanical support and overall physiology of the plant.
+\section{Why Leaf Vein Extraction Important}
+Leaf Vein Extraction is important for many reason such as : -
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Botanical Studies:} Understanding vein patterns helps in the classification and identification of plant species.
+    \item \textbf{Agricultural Applications:} Analyzing vein structures can assist in breeding programs aimed at improving crop resilience and productivity.
+    \item \textbf{Ecological Research:} Vein patterns provide insights into plant adaptation to different environments and can indicate the health and stress levels of plants.
+    \item \textbf{Paleobotany:} Fossilized leaves with preserved venation can provide information about ancient plant life and climate conditions.
+\end{enumerate}
+\section{Problem Involved in Leaf Vein Extraction}
+The existing methods of leaf vein extraction in botany present certain challenges and limitations that hinder accurate and efficient analysis of leaf vein networks, thereby impeding our understanding of plant taxonomy,physiology, and ecological adaptations.
+
+Some of these Challenges are:-
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Insufficient accuracy and precision:} Current techniques for leaf vein extraction may result in incomplete or inaccurate representations of the vein network. The extraction process often relies on manual or semi-automated methods that can introduce errors or inconsistencies, leading to unreliable data and misinterpretation of the leaf vein patterns.
+    \item \textbf{Limited applicability to diverse plant species:} Some leaf vein extraction techniques are optimised for specific plant species or leaf types, making them less applicable to a wide range of botanical samples. This restricts the generalizability and broader understanding of leaf vein patterns across different plant taxa. 
+    
+    Addressing these challenges, we Developing improved methods and techniques for leaf vein extraction that offer higher accuracy, efficiency, standardisation, applicability to diverse plant species, and integration of automation. Since our reality is complex, gathering information and data about things is quite difficult. When it comes to plants and leaves it would be more difficult to gather the information of the plant or leaves.
+    
+    To study about the behaviour of plant and its species, veins of leaves are the important part of plant to know about that. Veins play a crucial role in plants and extracting information from leaf veins can provide valuable insights into various aspects of plant biology. Leaf veins serve as a rich source of information about plant morphology, physiology, taxonomy, and ecological adaptations. Extracting and analysing vein characteristics can provide valuable insights into plant evolution, functional traits, ecological strategies, and applications in fields such as agriculture, medicine, and conservation. 
+    
+    The objective of this project is to develop an automated system for the extraction and analysis of veins structure from leaf images. Leaf vein patterns are crucial for plant species identification, as they provide essential information about the leaf morphology and play a significant role in plant taxonomy. Manual extraction and analysis of leaf veins can be time-consuming and prone to errors. Therefore, there is a need for an efficient and accurate automated approach to extract the veins structure from leaf images. The successful completion of this project will contribute to the field of plant biology and botany by providing a reliable and efficient method for automated leaf vein extraction. 
+    
+    The developed system can find applications in plant species identification, leaf disease detection, and plant taxonomy research. Moreover, it can assist researchers, botanists, and plant enthusiasts in studying and analysing the intricate vein patterns present in leaves, leading to a better understanding of plant diversity and ecological studies. This project aims to make significant strides in automating the process of leaf vein extraction and contribute to the advancement of computer vision and image processing techniques in the field of botany.
+\end{enumerate}
+\chapter{Literature Survey}
+As AI advances day by day, Image processing and image classification
+has become a popular field among researchers. We looked at some
+notable research of Vein Structure of leaves Extraction.
+
+Mark Fricker[10] used CNN (Convolutional Neural Network) technique
+and got good performance. The CNN approach gave a precision-recall
+harmonic mean of 94%, outperforming other current network extraction
+methods, and accurately described the widths, angles and connectivity
+of veins. Multiscale statistics then enabled the identification of
+previously undescribed variation in network architecture across species.
+We provide a LEAF VEIN CNN software package to enable multiscale
+quantification of leaf vein networks, facilitating the comparison across
+species and the exploration of the functional significance of different
+leaf vein architectures.
+
+Fu and Chi[11] used a two stage approach on leaves which had been
+photographed using fluorescent light banks to enhance the venation.
+First, edge detection methods were used to determine a suitable
+grayscale threshold for removing most of the non-vein pixels. An
+artificial neural network classifier was then used to refine the result.
+
+Li and Chi[13] successfully extracted the venation from leaf sub-images
+using Independent Component Analysis(ICA)[12], though when used
+on whole leaves, the results were only comparable to the Prewitt edge
+detection operator.
+
+Artificial ants worms were also used by Mullen[14] to trace venation
+and outlines in leaves via an edge detection method.
+Kirchgeßner [15] describes the same method of tracking vein structures
+of leaves, and representing them using b-splines which contain the hierarchical venation information. This method, however, required
+some manual interaction to initialise a search.
+
+Clarke[16] compares the results from two simple methods, smoothing
+and edge detection, and a scale space algorithm, with the best results
+that they could achieve manually using Photoshop.
+
+In 2003, H. Fu and Z. Chi [17] introduced a two-stage approach where
+intensity histogram information is initially used to filter out most
+background pixels. Gradient features representing edges which are
+further described by local contrast are combined with five statistical
+features based on intensity values. These features extracted from image
+regions are then used to train a neural network to achieve automatic
+classification of vein and non-vein pixels. The results showed that this
+method only achieved slightly better performance than using a Sobel
+filter
+
+The active contour model[18], i.e. snakes, is widely used for image
+segmentation and edge detection, but it requires prior knowledge of
+desired contour shapes, i.e. characterised leaf vein structures in this
+case. Consequently, their method enforces definition of leaf vein
+geometries by comparing pixel colour and measuring pixel distance in
+the HSI colour space.
+
+Consequently, their method enforces definition of leaf vein geometries
+by comparing pixel colour and measuring pixel distance in the HSI
+colour space [19] Due to these assumed characteristics of leaf venation,
+this method can only deal with a specific type of leaf venation
+architecture, and a high noise (non-vein pixels) level is still present in
+their demonstration of results. [20] investigated vein morphologies in
+grayscale images transformed in the HSV colour space.
+Morphological erosion and dilation, along with top-hat [21] and
+bottom-hat transformations, are employed by this method to obtain leaf venation. Disconnected vein segments are then joined and isolated
+pixels removed. As their experiments were conducted on scanned leaf
+images (by a HP Scanjet 4070 photosmart scanner) where local leaf
+curvatures were flattened and illumination was near to ideal, this
+method would very likely suffer in dealing with leaf data captured in
+dynamic ambient environments.
+
+A few other methods distinguish themselves by employing supervised
+or unsupervised learning methods to extract and process edge features
+differently. For example, Z. Chi [22] proposed to combine Sobel edges
+with an artificial neural network for leaf venation extraction. This
+method assumes that vein pixels are relatively darker than neighbouring
+pixels and extracts those around Sobel edges by comparing their first
+and second order derivatives.
+
+D.D. Feng[23] presented a venation extraction method based on
+Independent Component Analysis to learn latent independent causes of
+leaf features by considering them as a set of linear basis functions.
+Results show that this method can detect primary and secondary veins
+of pinnate venations while tertiary veins will likely become noise.
+
+As opposed to characterising leaf veins as edges, Y. Herdiyeni[24]
+considered them as ridges. In their work, the Hessian matrix for each
+pixel is calculated, which essentially consists of second-order
+derivatives of intensity values. This differs from many edge detection
+based methods by considering leaf veins as ridges instead of edges. By
+comparing the two Eigenvalues of a Hessian matrix, the local shape
+around each pixel can be quantified.
+
+Recently, K.S. Hong[25] started the research works to show how leaf
+venation could benefit plant speciation and suggested that this would
+further demand higher robustness against colour changes induced by
+factors such as diseases and nutritional deficiency. He proved the effectiveness of leaf venation combined with other features for plant
+recognition by achieving a recognition accuracy of 97.1% on a dataset
+with 1907 leaf images of 32 species. As they only employed basic
+morphological operations (i.e. erosion followed by dilation), only the
+primary vein and its direction could be determined. Its inherent
+limitations also mean that the venation extraction method cannot
+distinguish between true and false edges.
+
+S. Jeyalakshmi[26] pointed out that nutrition deficiency in plants will
+most likely lead to changes in interveinal areas and along the edges.
+Therefore, they proposed a method based on Canny edge detection.
+Thresholds were found heuristically to deal with edges of certain
+strength. This method was thus sensitive to pixel intensity variations,
+e.g. ambient lighting that can change the strength of edges at a local or
+global level.
+
+R.M. Craviotto[27] showed that leaf vein image features could be used
+independently to achieve plant speciation with experiments on three
+legume species, namely soybean, red beans and white beans. This
+method applies a hit-or-miss transform on grayscale images, which
+extracts pixels that match a neighbourhood with a specific foreground
+and background pattern. Different classifiers, including the Support
+Vector Machine, Penalised Discriminant Analysis and Random Forest
+then utilise these features to recognise leaf species. It was claimed that
+this method could outperform manual experts’ recognition.
+
+
+Turk, M., \& Pentland, A.[28] "Eigenfaces for recognition." Journal of Cognitive Neuroscience.Although primarily focused on facial recognition, this paper discussed the importance of feature extraction in image classification tasks. The authors emphasized the need for robust feature extraction methods, such as Principal Component Analysis (PCA), to improve classification performance. The insights from this study are applicable to leaf vein classification, where effective feature extraction is crucial for accurate identification.
+
+Tang, J., Deng, C., \& Huang, G. (2009).[29] "Extreme Learning Machine for Multilayer Perceptron." IEEE Transactions on Neural Networks.
+This research presented the Extreme Learning Machine (ELM) as an efficient algorithm for training single-layer feedforward neural networks. The study demonstrated ELM's capability in handling large datasets and achieving high classification accuracy. The application of ELM in botanical research, particularly for classifying plant species based on leaf features, underscores the potential of machine learning techniques in enhancing classification accuracy and efficiency.
+
+Zhang, D.,\& Lu, G. (2004)[30] "Review of shape representation and description techniques." Pattern Recognition.
+This review paper provided a comprehensive analysis of various shape representation and texture classification methods, including LBP. The authors compared different techniques based on their computational efficiency and classification accuracy. The study concluded that LBP is one of the most effective methods for texture analysis, making it highly suitable for applications such as leaf vein classification.
+
+Ojala, T., Pietikäinen, M., \& Harwood, D. (1996)[31]. "A comparative study of texture measures with classification based on featured distributions." Pattern Recognition.
+This seminal paper introduced Local Binary Patterns (LBP) as a powerful texture descriptor. The study demonstrated LBP's effectiveness in capturing micro-patterns and textures within images, leading to significant improvements in classification tasks. The robustness and computational simplicity of LBP have made it a popular choice in various image analysis applications, including facial recognition and material classification.
+
+\chapter{Proposed Methodology}
+There are many techniques that can be used to extract the veins
+structure of leaves. Some of the most common techniques include:
+\section{Image segmentation}
+Image segmentation is the process of dividing an image into its
+constituent parts. This can be a challenging task, as images can be complex and contain a variety of objects. However, there are a number of techniques that can be used to segment images, including thresholding, region growing, and edge detection.
+\begin{itemize}
+    \item \textbf{Thresholding:} Thresholding is a simple but effective technique for image segmentation. It involves assigning a threshold value to the image, and then classifying all pixels with a value above the threshold as veins, and all pixels with a value below the threshold as background. The threshold value can be chosen manually or automatically.
+     \item \textbf{Region growing:} Region growing is a more sophisticated technique for image segmentation. It involves starting with a seed pixel, and then iteratively growing a region around that pixel based on some criteria, such as the similarity of the pixel values. The seed pixel can be chosen manually or automatically.
+    \item \textbf{Edge detection:} Edge detection is a technique for identifying the edges in an image. Edges are typically defined as the boundaries between two regions with different pixel values. Once the edges have been identified, they can be used to segment the image into its constituent parts. There are a number of different edge detection algorithms available, such as the Sobel operator and the Canny edge detector.
+\end{itemize}
+\section{Feature extraction}
+Feature extraction is the process of identifying features that are
+characteristic of objects in an image. These features can then be used to classify the objects in an image. The features that are extracted from images of leaves can vary depending on the application. However, some common features include the thickness, length, and direction of the veins.
+\section{Machine learning}
+Machine learning is a field of computer science that deals with the development of algorithms that can learn from data. Machine learning can be used to train a model to automatically extract the veins structure of leaves. The model is trained on a set of images that have already been manually labelled with the veins structure.
+
+Once the model has been trained, it can be used to extract the veins structure from new images. This is a powerful technique, but it can be time-consuming and computationally expensive to train the model.
+\section{Morphological operations}
+\begin{enumerate}
+    \item \textbf{Image Acquisition: }We collected 277 images of plant leaves, comprising 144 images of Mango leaves and 133 images of Jatropha leaves. These images serve as the raw input for your vein extraction process.
+    \vspace{1cm}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[height=6cm, width=10cm]{images/Final year/leaf1.png} % Add your logo here
+        \caption{Original image of Mango.}
+    \end{figure}
+    \vspace{6cm}
+    \item \textbf{Preprocessing: }One of the morphological techniques of leaf vein extraction based on grayscale morphology. It includes five steps:
+    \begin{enumerate}
+        \item \textbf{Gray transformation:}The processing of gray transformation is to turn the colour image to the grayimage. The purpose of gray transformation is to reduce the amount of colour data in the image so as to speed up the following processing.
+        \vspace{1cm}
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[height=6cm, width=10cm]{images/Final year/leaf2.png} % Add your logo here
+            \caption{Gray Scale image of Mango.}
+        \end{figure}
+        \vspace{6cm}
+        \item \textbf{Grayscale morphology processing: }The purpose of grayscale morphology processing is just to get rid of the gray overlap in the whole leaf vein and the whole background and make it ready for image segmentation. The methods of image enhancement include linear intensity adjustment, Gamma correction, histogram equalisation, decorrelation stretching, etc.
+        \\ \\
+        Morphological operations are a set of image processing techniques that can be used to modify the shape of objects in an image. These operations are based on the concept of structuring elements, which are small shapes that are used to scan an image. The most common morphological operations include erosion, dilation, opening, and closing.
+        \begin{itemize}
+            \item \textbf{Erosion: }: Erosion is a morphological operation that shrinks an image by removing pixels from its edges. This can be useful for removing small objects from an image, such as noise or veins that are too small to be of interest.
+            \item \textbf{Dilation: }Dilation is a morphological operation that expands an image by adding pixels to its edges. This can be useful for enlarging objects, such as veins that are too small to be easily identified.
+            \item \textbf{Subtraction: }:  Subtract the dilated image from the original grayscale image to highlight the veins further. This operation helps in isolating the veins from the rest of the leaf.
+            \vspace{1cm}
+            \begin{figure}[htbp]
+                \centering
+                \includegraphics[height=6cm, width=10cm]{images/Final year/leaf3.png} % Add your logo here
+                \caption{Vein Extracted image of mango using morphological operation}
+            \end{figure}
+            \vspace{3cm}
+        \end{itemize}
+        \item \textbf{Image segmentation: }The goal of image segmentation processing is to extract the parts of leaf vein which can be detected by human eyes easily.
+        \item \textbf{Processing on details: }The defect of threshold segmentation is that some isolated points and discontinuous lines often emerge in the number of white pixels in its neighbourhood. If the number is more than a specified number, the current pixel is regarded as a pixel of the leaf vein and it should be turned to white, in other words, its gray value should be set as 1. The parts of the leaf vein which can be detected by human eyes in the image can be found with the new method. If the method is applied to a new kind of plant, only one parameter needs to be adjusted, which can be done by users easily. The method is also applicable for uneven illumination images.
+        \vspace{1cm}
+        \begin{figure}[htbp]
+            \centering
+            \includegraphics[height=6cm, width=10cm]{images/Final year/leaf4.png} % Add your logo here
+            \caption{vein extract}
+        \end{figure}
+        \vspace{1cm}
+    \end{enumerate}
+    \item \textbf{Feature Extraction using Local binary Pattern: }
+    The local binary pattern (LBP) is one of the popular texture descriptors used in computer vision. In this article, we will cover the topic of LBP, including an explanation of how the LBP descriptor works and a discussion of its advantages and disadvantages.
+    \\ \\
+    LBP is based on appearance features. It is a way to describe the local structure of an image in a way that is invariant to changes in illumination. LBP was first introduced in 1994 and has since been used in a wide range of applications, including object recognition, face detection, and texture classification. Its simplicity and effectiveness make it a popular choice for many computer vision tasks.\\
+    \textbf{The idea behind the LBP: }LBP works by comparing the intensity of a central pixel in a small neighborhood with the intensity of its surrounding pixels. Each pixel in the neighborhood is assigned a binary value based on whether its intensity is greater than or less than the intensity of the central pixel (threshold). 
+    \\ \\
+    These binary values are then concatenated into a binary number, which represents the texture of that neighborhood.These binary values can be then used to construct a histogram of the texture distribution within an image.
+    \vspace{1cm}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[height=6cm, width=10cm]{images/Final year/pattern.jpg} % Add your logo here
+        \caption{LBP Pattern}
+    \end{figure}
+    \vspace{1cm} \\
+    Figure 1. illustrates the example of the LBP algorithm. Let’s look into this example to understand the algorithm in detail.
+    \begin{enumerate}
+        \item Choose a pixel in the image and select its neighboring pixels in a circular or rectangular region around it.
+        \item Take the threshold (intensity of the selected pixel, here it is 50).
+        \item Go through every neighboring pixel and check whether its intensity is greater than or less than the threshold.Assign 1 to the neighboring pixel, if the intensity of the neighboring pixel is greater than the threshold.Assign 0 to the neighboring pixel, if the intensity of the neighboring pixel is less than the threshold.
+        \item Combine the binary values for all neighboring pixels to obtain a binary code for the central pixel (Anti-clockwise, starting from the top left corner), and convert it to a decimal value.
+        \item Repeat steps 1–4 for each pixel in the image to obtain a binary code for each pixel.
+    \end{enumerate}
+
+    Now use these LBP values to construct the histogram. By constructing a histogram of the LBP patterns, we can capture the frequency of occurrence of different texture patterns in the image. This histogram can then be used as a feature vector for texture classification tasks, where the goal is to automatically classify images based on their texture properties.
+    
+    \textbf{Advantages of LBP:}\\
+    Local Binary Pattern (LBP) has several advantages that make it a popular method for texture analysis in computer vision and image processing:
+    \begin{enumerate}
+        \item LBP is robust to illumination variations, which means that it can effectively capture texture information in images that have different lighting conditions. This makes it particularly useful for applications such as facial recognition and object detection, where lighting conditions can vary significantly.
+        \item LBP is a computationally efficient method for texture analysis, which makes it suitable for processing large datasets and real-time applications.
+        \item LBP is invariant to image rotation and scale. Hence it can effectively capture texture information in images that have been rotated or scaled.
+        \item LBP has been shown to be highly discriminative for texture analysis
+    \end{enumerate}
+    
+     \textbf{Disadvantages of LBP:}
+    While Local Binary Pattern (LBP) has several advantages for texture analysis, it also has some limitations and potential disadvantages, including::
+     \begin{enumerate}
+        \item LBP is sensitive to noise in the image. This can affect its ability to accurately capture texture information. The LBP operator compares neighboring pixel intensities, and if there is noise in the image, it can result in incorrect binary values that can affect the resulting LBP histogram.
+        \item3.	While LBP is invariant to image rotation, it does not capture rotational information in the texture patterns. This can limit its ability to distinguish between textures that are similar but differ in their rotational patterns.
+        \item4.	LBP is typically applied to grayscale images, which means that it does not capture color information in the texture patterns.
+    \end{enumerate}
+    \item Dataset Preparation:
+    \begin{enumerate}
+        \item Feature Matrix: After applying LBP to each image, we extract a feature vector for each image using Local Binary Pattern. Each feature vector represents the textural information of the image. We got 10 distinct features after applying LBP.
+        \item Lables: In the dataset, We have added a column name “label” which indicate the class of each image where 0 represents “Mango” and 1 represents “Jatropha” class.
+    \end{enumerate}
+    % \vspace{0.5cm}
+    \begin{figure}[htbp]
+        \centering
+        \includegraphics[height=20cm, width=12cm]{images/Final year/FlowChart.jpg} % Add your logo here
+        \caption{Flow Chart}
+    \end{figure}
+    \vspace{1cm}
+\end{enumerate}
+\chapter{Result \& Analysis}
+\section{Logistic Regression}
+Logistic Regression is a statistical method for analyzing a dataset in which one or more independent variables determine an outcome. The outcome is typically binary (0 or 1, true or false). Logistic Regression uses a logistic function to model the probability of a certain class or event existing. It assumes a linear relationship between the input features and the log-odds of the binary outcome.In our analysis, the logistic regression model achieved an accuracy of 0.58, indicating its performance in correctly predicting the binary outcomes. \\
+\vspace{1cm}
+    \begin{figure}[h!]
+    \centering
+        \includegraphics[height=4cm, width=8cm]{images/Final year/LR Graph.png} % Add your logo here
+    \end{figure} \\
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+  \hline
+   & Precision & Recall & F1-score & Support \\
+  \hline
+  0 & 0.59 & 1.60 & 0.60 & 144 \\
+  1 & 0.56 & 0.54 & 0.55 & 133 \\
+  % Accuracy &  &  & 0.57 & 277 \\
+  \hline
+\end{tabular}
+\end{center}
+\textbf{Analysis: }   Logistic Regression has a moderate Recall but a lower Precision, indicating that while it identifies a good number of true positives, it also has a higher number of false positives. The F1-Score and Accuracy are also relatively low compared to other models, suggesting that this model may not be the best choice for this particular classification task.
+\vspace{1cm}
+    \begin{figure}[h!]
+    \centering
+        \includegraphics[height=6cm, width=7cm]{images/Final year/LR heatMap.jpg} % Add your logo here
+        \caption{Logistic Regression Confusion Matrix}
+    \end{figure}
+\\ \\ \\ \\ \\ \\
+\section{Support Vector Machine (SVM)}
+Support Vector Machine is a powerful classification algorithm that works by finding the hyperplane that best separates the data into different classes. The goal of the SVM algorithm is to find the optimal hyperplane that maximizes the margin between the closest points of the classes, known as support vectors. SVM can handle linear and non-linear classification problems by using different kernel functions (e.g., linear, polynomial, radial basis function). It is effective in high-dimensional spaces, robust to overfitting in high-dimensional spaces.In our analysis, the SVM model achieved an accuracy of 0.60, demonstrating its effectiveness in correctly classifying the data.
+\vspace{1cm}
+    \begin{figure}[h!]
+    \centering
+        \includegraphics[height=4cm, width=8cm]{images/Final year/SVM graph.png} % Add your logo here
+    \end{figure} \\
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+  \hline
+   & Precision & Recall & F1-score & Support \\
+  \hline
+  0 & 0.57 & 0.90 & 0.70 & 144 \\
+  1 & 0.71 & 0.26 & 0.38 & 133 \\
+  % Accuracy &  &  & 0.60  & 277 \\
+  \hline
+\end{tabular}
+\end{center}
+\\ \\ \\ \\ \\ \\
+\textbf{Analysis: }   SVM shows an improvement over Logistic Regression with higher values in Precision, Recall, F1-Score, and Accuracy. This indicates a more balanced performance in identifying true positives and reducing false positives.
+% \vspace{1cm}
+    \begin{figure}[h!] 
+    \centering
+        \includegraphics[height=6cm, width=7cm]{images/Final year/svm Heatmap.jpg} % Add your logo here
+        \caption{SVM Confusion Matrix}
+    \end{figure}
+\\ \\ \\ \\ \\ \\ \\ \\ \\
+\section{Decision Tree}
+Decision Trees are a non-parametric supervised learning method used for classification and regression. They work by splitting the data into subsets based on the value of input features. This process is repeated recursively, forming a tree-like model of decisions. The final nodes of the tree represent the predicted class for the input features. This is easy to interpret and visualize, requires little data preparation, can handle both numerical and categorical data.
+
+\textbf{It is a graphical representation for getting all the possible solutions to a problem/decision based on given conditions.}
+
+It is called a decision tree because, similar to a tree, it starts with the root node, which expands on further branches and constructs a tree-like structure.the decision tree model achieved an accuracy of 0.95, indicating its high effectiveness in correctly predicting outcomes.\\
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+  \hline
+   & Precision & Recall & F1-score & Support \\
+  \hline
+  0 & 0.96 & 0.95 & 0.96 & 144 \\
+  1 & 0.95 & 0.96 & 0.96 & 133 \\
+  % Accuracy &  &  & 0.96  & 277 \\
+  \hline
+\end{tabular}
+\end{center}
+\textbf{Analysis: } The Decision Tree also performs well with high Precision, Recall, F1-Score, and Accuracy. While slightly lower than Random Forest, it still provides a strong balance between correctly identifying positive cases and minimizing false positives.
+\vspace{1cm}
+    \begin{figure}[h!]
+    \centering
+        \includegraphics[height=6cm, width=7cm]{images/Final year/Decision tree heatMap.jpg} % Add your logo here
+        \caption{Decision Tree Confusion Matrix}
+    \end{figure}
+\section{Random Forest}
+Random Forest is an ensemble learning method that combines multiple decision trees to improve the overall performance. Each tree is built on a random subset of the data and features, and the final prediction is made by averaging the predictions of the individual trees. This method helps to reduce overfitting and improve generalization. It reduces overfitting, handles large datasets with higher dimensionality, robust to noisy data.
+The Random Forest model achieved an accuracy of 0.97, demonstrating its superior performance in correctly predicting outcomes.
+
+These are some points that explain why we should use the Random Forest algorithm:
+
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+  \hline
+   & Precision & Recall & F1-score & Support \\
+  \hline
+  0 & 0.98 & 0.96 & 0.97 & 144 \\
+  1 & 0.96 & 0.98 & 0.97 & 133 \\
+  % Accuracy &  &  & 0.97  & 277 \\
+  \hline
+\end{tabular}
+\end{center}
+\textbf{Analysis: }   Random Forest performs exceptionally well, especially with a perfect Recall of 1.000, meaning it correctly identifies all positive cases. High Precision and F1-Score values also indicate that it minimizes false positives effectively. The high Accuracy shows overall robust performance.
+\vspace{1cm}
+    \begin{figure}[h!]
+    \centering
+        \includegraphics[height=6cm, width=7cm]{images/Final year/Random Forest HeatMap.jpg} % Add your logo here
+        \caption{Random Forest Confusion Matrix}
+    \end{figure}
+\section{Gaussian Naïve Bayes}
+Naive Bayes classifiers are based on Bayes' Theorem and the assumption that features are conditionally independent given the class. Gaussian Naive Bayes specifically assumes that the continuous features follow a Gaussian (normal) distribution. This classifier calculates the probability of each class and the conditional probability of each feature given the class, and predicts the class with the highest probability.
+This is simple, fast, works well with small datasets, effective for text classification.Analysis shows, the Gaussian Naive Bayes model achieved an accuracy of 0.68, indicating its performance in correctly predicting outcomes.
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+  \hline
+   & Precision & Recall & F1-score & Support \\
+  \hline
+  0 & 0.65 & 0.88 & 0.75 & 144 \\
+  1 & 0.79 & 0.48 & 0.60 & 133 \\
+  % Accuracy &  &  & 0.69  & 277 \\
+  \hline
+\end{tabular}
+\end{center}
+\textbf{Analysis: } Gaussian Naive Bayes has lower Precision and Recall compared to Decision Tree and Random Forest, indicating more false positives and false negatives. The F1-Score and Accuracy suggest it is less effective for this classification task.
+\vspace{1cm}
+    \begin{figure}[h!]
+    \centering
+        \includegraphics[height=6cm, width=7cm]{images/Final year/Gaussian Naïve Bayes HeatMap.jpg} % Add your logo here
+        \caption{Gaussian Naïve Bayes Confusion Matrix}
+    \end{figure}
+\section{K-Nearest Neighbours (KNN) Classifier}
+K-Nearest Neighbours is a simple, instance-based learning algorithm that classifies a data point based on how its neighbours are classified. A data point is classified by a majority vote of its neighbours, with the data point being assigned to the class most common among its k nearest neighbours (where k is a small positive integer).This is simple and intuitive, effective for small datasets, no training phase.
+
+This is simple, fast, works well with small datasets, effective for text classification.the KNN model achieved an accuracy of 0.79, indicating its effectiveness in correctly classifying data points.
+% \vspace{1cm}
+    \begin{figure}[h!]
+    \centering
+        \includegraphics[height=5cm, width=10cm]{images/Final year/KNN Graph.png} % Add your logo here
+    \end{figure} \\ \\ \\ \\ \\ \\ \\ \\ \\  
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+  \hline
+   & Precision & Recall & F1-score & Support \\
+  \hline
+  0 & 0.75 & 0.83 & 0.79 & 144 \\
+  1 & 0.79 & 0.71 & 0.75 & 133 \\
+  % Accuracy &  &  & 0.77  & 277 \\
+  \hline
+\end{tabular}
+\end{center}
+\textbf{Analysis: } KNN shows a decent balance with moderate values in all metrics. It performs better than Logistic Regression and Gaussian Naive Bayes but not as well as Decision Tree or Random Forest.
+\vspace{1cm}
+    \begin{figure}[h!]
+    \centering
+        \includegraphics[height=6cm, width=7cm]{images/Final year/KNN heatMap.jpg} % Add your logo here
+        \caption{KNN Confusion Matrix}
+    \end{figure} \newpage
+\section{Gradient Boosting Classifier}
+Gradient Boosting is an ensemble technique that builds models sequentially, each new model correcting errors made by the previous ones. Gradient Boosting for classification involves building an ensemble of weak learners, typically decision trees, in a stage-wise fashion, optimizing a loss function. Each tree in the sequence attempts to reduce the errors of the previous tree.
+
+This method offers high predictive accuracy, can handle mixed data types, and is robust to overfitting if parameters are tuned correctly. Analysis shows the Gradient Boosting model achieved an accuracy of 0.96, demonstrating its high effectiveness in accurately predicting outcomes.
+
+% Accuracy: 97.11\% \\
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+  \hline
+   & Precision & Recall & F1-score & Support \\
+  \hline
+  0 & 0.96 & 0.99 & 0.97 & 144 \\
+  1 & 0.98 & 0.95 & 0.97 & 133 \\
+  % Accuracy &  &  & 0.97  & 277 \\
+  \hline
+\end{tabular}
+\end{center}
+
+\textbf{Analysis: } Gradient Boosting Classifier performs exceptionally well with high values across all metrics. It has a very high Precision, Recall, and F1-Score, suggesting it is highly effective at identifying true positives and minimizing false positives and false negatives. The high Accuracy further confirms its robustness.
+\vspace{1cm}
+    \begin{figure}[h!]
+    \centering
+        \includegraphics[height=6cm, width=7cm]{images/Final year/Gradient Boosting Classifier HeatMap.jpg} % Add your logo here
+        \caption{Gradient Boosting Classifier Confusion Matrix}
+    \end{figure}
+\section{XGB Classifier}
+XGBoost is an optimized implementation of Gradient Boosting that is designed to be highly efficient, flexible, and portable. It uses a more regularized model formalization to control overfitting, employs sophisticated algorithms to handle missing data, and provides built-in cross-validation.
+
+This method offers high performance and scalability, supports parallel and distributed computing, is robust to overfitting, and handles missing values well. Analysis shows the XGBoost model achieved an accuracy of 0.96, showcasing its high effectiveness and reliability in predicting outcomes.
+
+% Accuracy: 92.86\% \\
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+  \hline
+   & Precision & Recall & F1-score & Support \\
+  \hline
+  0 & 0.95 & 0.90 & 0.92 & 20 \\
+  1 & 0.91 & 0.95 & 0.93 & 22 \\
+  % Accuracy &  &  & 0.93  & 42 \\
+  \hline
+\end{tabular}
+\end{center}
+
+\textbf{Analysis: } XGB Classifier shows identical performance metrics to the Gradient Boosting Classifier. This suggests that both algorithms are highly effective for this classification task, providing the best balance of Precision, Recall, F1-Score, and Accuracy among the models compared.
+
+\vspace{1cm}
+    \begin{figure}[h!]
+    \centering
+        \includegraphics[height=6cm, width=7cm]{images/Final year/XGBoost heatMap.jpg} % Add your logo here
+        \caption{XGB classifier Confusion Matrix}
+    \end{figure}
+\newpage All algorithms with their result--
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+  \hline
+   Algorithm & Precision & Recall & F1-score & Accuracy \\
+  \hline
+  Logistic Regression & 0.57 & 0.50 & 0.54 & 0.58 \\
+  Support Vector Machine & 0.71 & 0.28 & 0.40 & 0.60 \\
+  Random Forest & 0.97 & 0.97 & 0.97  & 0.97 \\
+  Decision Tree & 0.95 & 0.95 & 0.95  & 0.95 \\
+  Gaussian Naive Bayes & 0.78 & 0.47 & 0.58 & 0.68 \\
+  K Nearest Neighbors & 0.78 & 0.80 & 0.79  & 0.79 \\
+  Gradient Boosting Classifier & 0.95 & 0.98 & 0.96  & 0.96 \\
+  XGB Classifier & 0.95 & 0.98 & 0.96  & 0.96 \\
+  \hline
+\end{tabular}
+\end{center}
+
+% \vspace{1cm}
+    \begin{figure}[h!]
+    \centering
+        \includegraphics[height=10cm, width=13cm]{images/Final year/AccuracyChart.jpg} 
+        \caption{Accuracy Chart}
+    \end{figure}
+
+\newpage Each metric provides unique insights into the performance of a machine learning model. Here's what each term means and what we can conclude from them:
+
+\begin{enumerate}
+    \item Precision
+    \begin{itemize}
+        \item \textbf{Definition:} Precision is the ratio of correctly predicted positive observations to the total predicted positives. It answers the question: "Of all the instances that were predicted as positive, how many were actually positive?"
+        
+        \item Formula: Precision=TPTP+FP/text{Precision} = /frac{TP}{TP + FP}Precision=TP+FPTP
+
+        TP: True Positiveso	
+        FP: False Positives
+
+        \item \textbf{Conclusion:} High precision indicates that the model has a low false positive rate. This is crucial in cases where the cost of false positives is high, such as spam detection (where you don’t want to misclassify legitimate emails as spam).
+    \end{itemize}
+    \item Recall (Sensitivity or True Positive Rate)
+    \begin{itemize}
+        \item \textbf{Definition:} Recall is the ratio of correctly predicted positive observations to all the observations in the actual class. It answers the question: "Of all the instances that were actually positive, how many were correctly predicted as positive?"
+        
+        \item Formula: Recall=TPTP+FN/text{Recall} = /frac{TP}{TP + FN}Recall=TP+FNTP
+        FN: False Negatives
+        
+        \item \textbf{Conclusion:}High recall indicates that the model has a low false negative rate. This is important in scenarios where missing a positive case is costly, such as in medical diagnosis (where you don’t want to miss a disease diagnosis).
+    \end{itemize}
+    \item F1-Score
+    \begin{itemize}
+        \item \textbf{Definition:} The F1-score is the weighted average of Precision and Recall. It seeks a balance between precision and recall.
+        
+        \item \textbf{Formula:}: F1-Score=2×Precision×RecallPrecision+Recall/text{F1-Score} = 2 /times /frac{/text{Precision} /times /text{Recall}}{/text{Precision} + /text{Recall}}F1-Score=2×Precision+RecallPrecision×Recall
+        
+        \item \textbf{Conclusion:} The F1-score is useful when you need a balance between precision and recall, especially in cases of uneven class distribution.
+    \end{itemize}
+    \item Accuracy
+    \begin{itemize}
+        \item \textbf{Definition:} Accuracy is the ratio of correctly predicted observations to the total observations. It answers the question: "How often is the model correct?"
+        
+        \item \textbf{Formula:}:Accuracy=TP+TNTP+TN+FP+FN\text{Accuracy} = /frac{TP + TN}{TP + TN + FP + FN}Accuracy=TP+TN+FP+FNTP+TN
+        TN: True Negatives
+        
+        \item \textbf{Conclusion:} Accuracy is a good metric when the classes are balanced. However, in cases of imbalanced classes, it might be misleading. For example, if 95\% of the samples are negative and 5% are positive, a model that always predicts negative will have high accuracy but poor predictive power for the positive class.
+    \end{itemize}
+    \item Practical Conclusions
+    \begin{itemize}
+        \item \textbf{High Precision, Low Recall:} The model is very conservative in its predictions. It makes fewer positive predictions, but those are generally correct. Useful when false positives are costly.
+        
+        \item \textbf{High Recall, Low Precision: } The model is very liberal in its predictions. It predicts many positives, but also makes more mistakes. Useful when false negatives are costly.
+        
+        \item \textbf{High F1-Score: }Indicates a good balance between precision and recall. Preferred when you need to find a trade-off between the two.
+        
+        \item \textbf{High Accuracy: }Indicates that the model is generally correct. However, ensure to look at precision, recall, and F1-score to understand the performance better, especially in imbalanced datasets
+    \end{itemize}
+\end{enumerate}
+
+\textbf{Analysis of Machine Learning Algorithm Performance}
+\\\\
+The table summarizes the performance metrics of various machine learning algorithms. Let's break down and analyze the performance based on Precision, Recall, F1-Score, and Accuracy.
+\chapter{Conclusion \& Application}
+\begin{justify}
+In conclusion, the extraction of vein structures from plant leaves is a crucial aspect of botanical research that provides valuable insights into plant taxonomy, physiology, ecological adaptations, and applications in various fields. The development of advanced techniques and algorithms for leaf vein extraction has the potential to overcome existing challenges and limitations, such as accuracy, efficiency, standardisation, and applicability to diverse plant species.
+
+By employing grayscale morphology operations and leveraging image
+processing techniques, machine learning algorithms, or other computational methods, researchers can enhance the accuracy and efficiency of vein segmentation.
+
+The improved leaf vein extraction methods not only enable precise analysis of vein networks but also offer insights into leaf morphology, phylogenetic relationships, physiological adaptations, and potential applications in fields like medicine and nutrition. By addressing the existing problems and achieving the objectives outlined in the synopsis, researchers can advance
+our understanding of plant biology, contribute to taxonomic identification, and provide valuable data for ecological studies, phylogenetic analyses, and biomedical research. 
+
+In summary, the continuous development of leaf vein extraction methods allows us to extract crucial information from plant veins accurately and efficiently, leading to advancements in botanical research and its
+applications in various domains
+\end{justify}
+\vspace{1.5cm}
+\centering
+\textbf{\Huge Applications}
+\begin{itemize}
+    \item \textbf{Enhanced Accuracy:} Vein patterns are unique to each plant species and often provide more distinctive features than general plant morphology (shape, size, color).
+    
+    Extracting vein patterns allows for a more granular analysis, capturing subtle differences that might be missed in overall plant structure.
+    \item \textbf{Robustness to Environmental Variability:} Vein patterns are less affected by environmental conditions (e.g., lighting, background) compared to other plant features, leading to more consistent and reliable classification.
+    
+    Plants may change in appearance due to seasons, age, or damage, but their vein structures tend to remain relatively stable.
+    \item \textbf{Focused Feature Set:} By focusing on vein patterns, we reduce the noise from other less relevant features, improving the performance of classification algorithms.
+    
+    Vein extraction simplifies the feature set, making the classification model more efficient and easier to train.
+    \item \textbf{Improved Model Performance:} Higher Precision and Recall: Models trained on extracted vein patterns tend to have higher precision and recall rates due to the distinctiveness of the features.
+    
+    Better Generalization: Extracting and using vein patterns helps the model generalize better across different plant species, leading to more accurate predictions.
+    \item \textbf{Biological Relevance:} Vein patterns are a key taxonomic feature used by botanists to classify plants, aligning the automated classification process with established biological methods.
+    
+    Analyzing vein patterns can provide insights into evolutionary relationships between plant species.
+    \item \textbf{Practical Applications:}Changes in vein patterns can be indicative of diseases or nutrient deficiencies, making vein analysis a valuable tool for plant health monitoring.
+    
+    Precision agriculture can benefit from vein pattern analysis to optimize resource allocation, such as water and fertilizers, based on specific plant needs.
+\end{itemize}
+\vspace{3cm}
+\begin{justify}
+\textbf{\Huge References}
+\\ \\
+\textbf{[1]} Jin Yingen. Botany. Beijing: Science Press, 2006.
+
+\textbf{[2]} Nam Y., Hwang E., and Kim D., “A similarity-based leaf image retrieval scheme: Joining shape and venation features,” Computer Vision and Image Understanding, 2008, 110 (2): 245-259.
+
+\textbf{[3]} Park J, Hwang E, and Nam Y, “Utilising venation features for efficient leaf image retrieval,” The Journal of Systems and Software, 2008, 81: 71–82.
+
+\textbf{[4]} Soille P., “Morphological image analysis applied to crop field mapping,” Image and Vision Computing, 2000, 18: 1025 1032
+
+\textbf{[5]} Kirchgessner N., Scharr H., and Schurr U., “Robust vein extraction on plant leaf images,” In: 2nd IASTED International Conference Visualization, Imaging and Image Processing, Malaga, Spain, 9–12 September, 2002.
+
+\textbf{[6]} Fu H., and Chi Z., “A two-stage approach for leaf vein extraction,” In: Proceedings of International Conference on Neural Networks and Signal Processing, vol. I, Nanjing, Jiangsu, China, December 12–15, 2003, pp. 208–211.
+
+\textbf{[7]} Li Y.F., Zhu Q.S., Cao Y.K., Wang C.L, “A Leaf Vein Extraction Method Based On Snakes Technique,” In: International Conference on Neural Networks and Brain 2005, vol. 2, 13–15 Oct. 2005, pp. 885–888.
+
+\textbf{[8]} Clarke, J. ,Barman ,S. ,Remagnino ,P. ,Bailey ,K. ,Kirkup ,D.
+,Mayo ,S. ,Wilkin , P.: Venation pattern analysis of leaf images. Lecture Notes In Computer Science 4292, 427–436(2006)
+
+\textbf{[9]} H. Fu, Z. Chi A two-stage approach for leaf vein extraction Proceedings of the IEEE International Conference on Neural Networks and Signal Processing, 1 (2003), pp. 208-211
+
+\textbf{[10]} T. Chan, L. Vese An Active Contour Model Without Edges
+Scale-Space Theories in Computer Vision (1999), pp. 141-151
+\textbf{[11]} I. Philipp, T. Rath
+Improving plant discrimination in image processing by use of different
+colour space transformations
+
+Comput. Electron. Agric., 35 (1) (2002), pp. 1-15
+\textbf{[12]} X. Zheng, X. Wang
+Leaf vein extraction based on gray-scale morphology International
+Journal of Image
+Graphics Signal Process., 2 (2) (2010), p. 25
+
+\textbf{[13]} D.S. Bright, E.B. Steel
+Two-dimensional top hat filter for extracting spots and spheres from
+digital images
+J. Microsc., 146 (2) (1987), pp. 191-200
+
+\textbf{[14]} H. Fu, Z. Chi
+Combined thresholding and neural network approach for vein pattern
+extraction from leaf images
+IEE Proc. Vis. Image Signal Process., 153 (6) (2006), pp. 881-892
+
+\textbf{[15]} Y. Li, Z. Chi, D.D. Feng
+Leaf vein extraction using independent component analysis
+IEEE International Conference on Systems Man and Cybernetics
+(2006), pp. 3890-3894
+
+\textbf{[16]} A. Salima, Y. Herdiyeni, S. Douady Leaf vein segmentation of medicinal plant using Hessian matrix
+IEEE International Conference on Advanced Computer Science and
+Information Systems
+
+\textbf{[17]} K.B. Lee, K.S. Hong
+An implementation of leaf recognition system using leaf vein and shape
+Int. J. Bio-Sci. Bio-Technol., 5 (2) (2013), pp. 57-66
+
+\textbf{[18]} R. Radha, S. Jeyalakshmi
+An effective algorithm for edges and veins detection in leaf images
+IEEE World Congress on Computing and Communication Technologies
+(2014), pp. 128-131
+
+\textbf{[19]} M.G. Larese, R. Namías, R.M. Craviotto, M.R. Arango, C. Gallo,
+P.M. Granitto
+Automatic classification of legumes using leaf vein image features
+Pattern Recognit., 47 (1) (2014), pp. 158-168
+
+\textbf{[20]} T. Ojala, M. Pietikäinen, and D. Harwood (1994), “Performance evaluation of texture measures with classification based on Kullback discrimination of distributions”, Proceedings of the 12th IAPR International Conference on Pattern Recognition (ICPR 1994), vol. 1, pp. 582–585.
+\end{justify}
+}
+\end{document}
+
